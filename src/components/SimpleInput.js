@@ -10,10 +10,14 @@ const SimpleInput = (props) => {
 
   function formSubmissionHandler(e) {
     e.preventDefault();
+    if (enteredName.trim() === "") {
+      return;
+    }
+
     const enteredValue = nameInputRef.current.value;
     console.log(enteredValue);
 
-    // Resetting entered value
+    // Resetting entered value not possible with useRef();
     setEnteredName("");
   }
 

@@ -26,7 +26,7 @@ function useInput(validateValue) {
     hasError,
     valueChangeHandler,
     inputBlurHandler,
-    reset
+    reset,
   };
 }
 

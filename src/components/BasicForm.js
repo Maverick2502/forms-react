@@ -1,33 +1,36 @@
 import React from "react";
 import useInput from "../hooks/use-input";
 
-function BasicForm(props) {
+function BasicForm() {
+  const isNotEmpty = (value) => value.trim() !== "";
+  const isNotEmptyEmail = (value) => value.includes("@");
+
   const {
     value: enteredName,
     isValid: enteredNameIsValid,
     hasError: nameInputHasError,
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
-    reset: resetName
-  } = useInput((value) => value.trim() !== "");
+    reset: resetName,
+  } = useInput(isNotEmpty);
 
   const {
     value: enteredSurname,
     isValid: enteredSurnameIsValid,
     hasError: surnameInputHasError,
-    valueChangeHandler: surnameChangeHadler,
+    valueChangeHandler: surnameChangeHandler,
     inputBlurHandler: surnameBlurHandler,
-    reset: resetSurname
-  } = useInput((value) => value.trim() !== "");
+    reset: resetSurname,
+  } = useInput(isNotEmpty);
 
   const {
     value: enteredEmail,
     isValid: enteredEmailValid,
     hasError: emailInputHasError,
-    valueChangeHandler: emailhangeHandler,
+    valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
-    reset: resetEmail
-  } = useInput((value) => value.includes("@"));
+    reset: resetEmail,
+  } = useInput(isNotEmptyEmail);
 
   let formIsValid;
 
@@ -51,20 +54,20 @@ function BasicForm(props) {
 
   const nameInputClasses = nameInputHasError
     ? "form-control invalid"
-    : "form-control";
+    : "form-control ";
 
   const surnameInputClasses = surnameInputHasError
     ? "form-control invalid"
-    : "form-control";
+    : "form-control ";
 
   const emailInputClasses = emailInputHasError
     ? "form-control invalid"
-    : "form-control";
+    : "form-control ";
 
   return (
     <form onSubmit={formSubmissionHandler}>
       <div className="control-group">
-        <div className="form-control">
+        <div className={nameInputClasses}>
           <label htmlFor="name">First Name</label>
           <input
             type="text"
@@ -77,12 +80,12 @@ function BasicForm(props) {
             <p className="error-text">Name must not be empty.</p>
           )}
         </div>
-        <div className="form-control">
+        <div className={surnameInputClasses}>
           <label htmlFor="name">Last Name</label>
           <input
             type="text"
             id="name"
-            onChange={surnameChangeHadler}
+            onChange={surnameChangeHandler}
             onBlur={surnameBlurHandler}
             value={enteredSurname}
           />
@@ -91,12 +94,12 @@ function BasicForm(props) {
           )}
         </div>
       </div>
-      <div className="form-control">
+      <div className={emailInputClasses}>
         <label htmlFor="name">E-Mail Address</label>
         <input
           type="text"
           id="name"
-          onChange={emailhangeHandler}
+          onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
           value={enteredEmail}
         />

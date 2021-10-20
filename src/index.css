@@ -29,6 +29,8 @@ body {
 .form-control input,
 .form-control label {
   display: block;
+  height: 32px;
+  border-radius: 8px;
 }
 
 .form-control label {
@@ -72,18 +74,6 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
-
-button:disabled {
-  background-color: #ccc;
-  color: #3f3f3f;
-  border: none;
-}
-
-/* button:hover,
-button:active {
-  background-color: #33059e;
-  border-color: #33059e;
-} */
 
 button:disabled {
   background-color: #ccc;
